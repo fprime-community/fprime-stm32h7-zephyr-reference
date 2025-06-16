@@ -4,3 +4,6 @@
 [submodule "lib/fprime-zephyr"]
 	path = lib/fprime-zephyr
 	url = https://github.com/vibai-aspade/fprime-zephyr.git
+[submodule "lib/zephyr-workspace/zephyr"]
+	path = lib/zephyr-workspace/zephyr
+	url = https://github.com/zephyrproject-rtos/zephyr.git
