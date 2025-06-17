@@ -169,17 +169,17 @@ typedef enum {
 
 // Specifies the size of the string holding the queue name for queues
 #ifndef FW_QUEUE_NAME_BUFFER_SIZE
-#define FW_QUEUE_NAME_BUFFER_SIZE 80  //!< Max size of message queue name
+#define FW_QUEUE_NAME_BUFFER_SIZE 10  //!< Max size of message queue name
 #endif
 
 // Specifies the size of the string holding the task name for active components and tasks
 #ifndef FW_TASK_NAME_BUFFER_SIZE
-#define FW_TASK_NAME_BUFFER_SIZE 80  //!< Max size of task name
+#define FW_TASK_NAME_BUFFER_SIZE 10  //!< Max size of task name
 #endif
 
 // Specifies the size of the buffer that contains a communications packet.
 #ifndef FW_COM_BUFFER_MAX_SIZE
-#define FW_COM_BUFFER_MAX_SIZE 512
+#define FW_COM_BUFFER_MAX_SIZE 256
 #endif
 
 // Specifies the size of the buffer attached to state machine signals.
@@ -216,7 +216,7 @@ typedef enum {
 // Specifies the maximum size of a string in a log event
 // Note: This constant truncates file names in assertion failure event reports
 #ifndef FW_LOG_STRING_MAX_SIZE
-#define FW_LOG_STRING_MAX_SIZE 200  //!< Max size of log string parameter type
+#define FW_LOG_STRING_MAX_SIZE 120  //!< Max size of log string parameter type
 #endif
 
 // Specifies the size of the buffer that contains the serialized telemetry value.
@@ -241,7 +241,7 @@ typedef enum {
 
 // Specifies the maximum size of a string in a parameter
 #ifndef FW_PARAM_STRING_MAX_SIZE
-#define FW_PARAM_STRING_MAX_SIZE 40  //!< Max size of parameter string type
+#define FW_PARAM_STRING_MAX_SIZE 20  //!< Max size of parameter string type
 #endif
 
 // Specifies the maximum size of a file upload chunk
@@ -290,12 +290,12 @@ typedef enum {
 // Configuration for Fw::String
 
 #ifndef FW_FIXED_LENGTH_STRING_SIZE
-#define FW_FIXED_LENGTH_STRING_SIZE 256  //!< Character array size for Fw::String
+#define FW_FIXED_LENGTH_STRING_SIZE 128  //!< Character array size for Fw::String
 #endif
 
 // OS configuration
 #ifndef FW_CONSOLE_HANDLE_MAX_SIZE
-#define FW_CONSOLE_HANDLE_MAX_SIZE 24  //!< Maximum size of a handle for OS queues
+#define FW_CONSOLE_HANDLE_MAX_SIZE 8  //!< Maximum size of a handle for OS queues
 #endif
 
 #ifndef FW_TASK_HANDLE_MAX_SIZE
@@ -303,11 +303,11 @@ typedef enum {
 #endif
 
 #ifndef FW_FILE_HANDLE_MAX_SIZE
-#define FW_FILE_HANDLE_MAX_SIZE 16  //!< Maximum size of a handle for OS queues
+#define FW_FILE_HANDLE_MAX_SIZE 8  //!< Maximum size of a handle for OS queues
 #endif
 
 #ifndef FW_MUTEX_HANDLE_MAX_SIZE
-#define FW_MUTEX_HANDLE_MAX_SIZE 72  //!< Maximum size of a handle for OS queues
+#define FW_MUTEX_HANDLE_MAX_SIZE 24  //!< Maximum size of a handle for OS queues
 #endif
 
 #ifndef FW_QUEUE_HANDLE_MAX_SIZE
@@ -331,7 +331,7 @@ typedef enum {
 #endif
 
 #ifndef FW_CONDITION_VARIABLE_HANDLE_MAX_SIZE
-#define FW_CONDITION_VARIABLE_HANDLE_MAX_SIZE 56  //!< Maximum size of a handle for OS condition variables
+#define FW_CONDITION_VARIABLE_HANDLE_MAX_SIZE 28  //!< Maximum size of a handle for OS condition variables
 #endif
 
 #ifndef FW_CPU_HANDLE_MAX_SIZE
