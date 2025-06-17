@@ -26,3 +26,5 @@ fprime_setup_included_code()
 
 # This includes project-wide objects
 include("${CMAKE_CURRENT_LIST_DIR}/project.cmake")
+
+set_target_properties(Svc_FatalHandler PROPERTIES EXCLUDE_FROM_ALL TRUE)

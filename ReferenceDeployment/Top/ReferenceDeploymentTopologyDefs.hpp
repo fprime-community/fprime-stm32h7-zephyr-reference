@@ -6,11 +6,12 @@
 #ifndef REFERENCEDEPLOYMENT_REFERENCEDEPLOYMENTTOPOLOGYDEFS_HPP
 #define REFERENCEDEPLOYMENT_REFERENCEDEPLOYMENTTOPOLOGYDEFS_HPP
 
-#include "Drv/BlockDriver/BlockDriver.hpp"
+// #include "Drv/BlockDriver/BlockDriver.hpp"
 #include "Fw/Types/MallocAllocator.hpp"
 #include "ReferenceDeployment/Top/FppConstantsAc.hpp"
 #include "Svc/FramingProtocol/FprimeProtocol.hpp"
 #include "Svc/Health/Health.hpp"
+#include <zephyr/drivers/uart.h>
 
 // Definitions are placed within a namespace named after the deployment
 namespace ReferenceDeployment {
@@ -23,8 +24,8 @@ namespace ReferenceDeployment {
  * to the definition of the project. Here, they are derived from command line inputs.
  */
 struct TopologyState {
-    const CHAR* hostname;
-    U16 port;
+    const device* uartDevice;
+    U32 baudRate;
 };
 
 /**
@@ -47,9 +48,9 @@ struct TopologyState {
  * ```
  */
 namespace PingEntries {
-namespace ReferenceDeployment_blockDrv {
-enum { WARN = 3, FATAL = 5 };
-}
+// namespace ReferenceDeployment_blockDrv {
+// enum { WARN = 3, FATAL = 5 };
+// }
 namespace ReferenceDeployment_tlmSend {
 enum { WARN = 3, FATAL = 5 };
 }
