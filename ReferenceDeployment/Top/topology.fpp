@@ -13,9 +13,9 @@ module ReferenceDeployment {
     EVENTS,
     TELEMETRY
   }
-  enum Ports_ComBufferQueue {
-    FILE_DOWNLINK
-  }
+  # enum Ports_ComBufferQueue {
+  #   FILE_DOWNLINK
+  # }
 
   topology ReferenceDeployment {
 
@@ -38,13 +38,13 @@ module ReferenceDeployment {
     instance eventLogger
     # instance fatalAdapter #
     instance fatalHandler
-    instance fileDownlink #
+    # instance fileDownlink #
     # instance fileManager #
     instance fileUplink #
     instance bufferManager
     instance framer
     instance chronoTime
-    # instance prmDb #
+    instance prmDb #
     instance rateGroup1
     instance rateGroup2
     instance rateGroup3 #
@@ -52,6 +52,7 @@ module ReferenceDeployment {
     instance textLogger
     instance systemResources #
     instance led
+    instance gpioDriver
 
     # ----------------------------------------------------------------------
     # Pattern graph specifiers
@@ -61,7 +62,7 @@ module ReferenceDeployment {
 
     event connections instance eventLogger
 
-    # param connections instance prmDb
+    param connections instance prmDb
 
     # telemetry connections instance tlmSend
 
@@ -81,9 +82,9 @@ module ReferenceDeployment {
       eventLogger.PktSend         -> comQueue.comPacketQueueIn[Ports_ComPacketQueue.EVENTS]
       # tlmSend.PktSend             -> comQueue.comPacketQueueIn[Ports_ComPacketQueue.TELEMETRY]
       #
-      fileDownlink.bufferSendOut  -> comQueue.bufferQueueIn[Ports_ComBufferQueue.FILE_DOWNLINK]
+      # fileDownlink.bufferSendOut  -> comQueue.bufferQueueIn[Ports_ComBufferQueue.FILE_DOWNLINK]
       #
-      comQueue.bufferReturnOut[Ports_ComBufferQueue.FILE_DOWNLINK] -> fileDownlink.bufferReturn
+      # comQueue.bufferReturnOut[Ports_ComBufferQueue.FILE_DOWNLINK] -> fileDownlink.bufferReturn
 
       # ComQueue <-> Framer
       comQueue.dataOut   -> framer.dataIn
@@ -118,7 +119,7 @@ module ReferenceDeployment {
       rateGroupDriver.CycleOut[Ports_RateGroups.rateGroup1] -> rateGroup1.CycleIn
       # rateGroup1.RateGroupMemberOut[0] -> tlmSend.Run
       #
-      rateGroup1.RateGroupMemberOut[1] -> fileDownlink.Run
+      # rateGroup1.RateGroupMemberOut[1] -> fileDownlink.Run
       #
       rateGroup1.RateGroupMemberOut[2] -> systemResources.run
       #
@@ -179,6 +180,13 @@ module ReferenceDeployment {
 
     connections ReferenceDeployment {
       # Add here connections to user-defined components
+    }
+
+    connections LedConnections {
+      # Rate Group 1 (1Hz cycle) ouput is connected to led's run input
+      rateGroup1.RateGroupMemberOut[1] -> led.run
+      # led's gpioSet output is connected to gpioDriver's gpioWrite input
+      led.gpioSet -> gpioDriver.gpioWrite
     }
 
   }

@@ -47,6 +47,25 @@ namespace Components {
       U32 m_toggleCounter = 0; //! Keeps track of how many ticks the LED has been on for
       bool m_blinking = false; //! Flag: if true then LED blinking will occur else no blinking will happen
 
+    PRIVATE:
+
+    // ----------------------------------------------------------------------
+    // Handler implementations for typed input ports
+    // ----------------------------------------------------------------------
+
+    //! Handler implementation for run
+    //!
+    //! Port receiving calls from the rate group
+    void run_handler(
+        FwIndexType portNum, //!< The port number
+        U32 context //!< The call order
+    ) override;
+
+    //! Emit parameter updated EVR
+    //!
+    void parameterUpdated(FwPrmIdType id  //!< The parameter ID
+                          ) override;
+
   };
 
 }

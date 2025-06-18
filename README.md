@@ -34,6 +34,7 @@ fprime-util build
 
 ## Flashing the NUCLEO H723ZG development board
 ```sh
+# In top level project directory
 sh ~/Library/Arduino15/packages/STMicroelectronics/tools/STM32Tools/2.3.0/stm32CubeProg.sh -i swd -f build-fprime-automatic-zephyr/zephyr/zephyr.hex -c /dev/cu.usbmodem142203 
 ```
 
@@ -48,8 +49,9 @@ sh ~/Library/Arduino15/packages/STMicroelectronics/tools/STM32Tools/2.3.0/stm32C
 The following command will spin up the F' GDS as well as run the application binary and the components necessary for the GDS and application to communicate.
 
 ```sh
+# In top level project directory
 fprime-gds -n --dictionary ./build-artifacts/zephyr/fprime-zephyr-deployment/dict/ReferenceDeploymentTopologyDictionary.json --communication-selection uart --uart-device /dev/cu.usbmodem142101 --uart-baud 115200 
 ```
 
 > [!Note]
-> `/dev/cu.usbmodem142203` will likely need to be replaced with the correct port. This can be found by running the following command: `ls -l /dev/cu.usb*`
+> `/dev/cu.usbmodem142101` will likely need to be replaced with the correct port. This can be found by running the following command: `ls -l /dev/cu.usb*`

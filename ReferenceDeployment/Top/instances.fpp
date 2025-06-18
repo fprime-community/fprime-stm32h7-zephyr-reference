@@ -6,7 +6,7 @@ module ReferenceDeployment {
 
   module Default {
     constant QUEUE_SIZE = 10
-    constant STACK_SIZE = 2 * 1024
+    constant STACK_SIZE = 4 * 1024
   }
 
   # ----------------------------------------------------------------------
@@ -48,10 +48,10 @@ module ReferenceDeployment {
       stack size Default.STACK_SIZE \
       priority 8
 
-  instance fileDownlink: Svc.FileDownlink base id 0x0800 \
-    queue size 30 \
-    stack size Default.STACK_SIZE \
-    priority 8
+  # instance fileDownlink: Svc.FileDownlink base id 0x0800 \
+  #   queue size 30 \
+  #   stack size Default.STACK_SIZE \
+  #   priority 8
 
   # instance fileManager: Svc.FileManager base id 0x0900 \
   #   queue size 30 \
@@ -82,15 +82,15 @@ module ReferenceDeployment {
   #    stack size Default.STACK_SIZE \
   #    priority 97
 
-  # instance prmDb: Svc.PrmDb base id 0x0D00 \
-  #   queue size Default.QUEUE_SIZE \
-  #   stack size Default.STACK_SIZE \
-  #   priority 96
+  instance prmDb: Svc.PrmDb base id 0x0D00 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 5
 
   instance led: Components.Led base id 0x0E00 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
-    priority 5
+    priority 4
 
   # ----------------------------------------------------------------------
   # Queued component instances
@@ -130,6 +130,7 @@ module ReferenceDeployment {
   instance frameAccumulator: Svc.FrameAccumulator base id 0x4C00
 
   instance fprimeRouter: Svc.FprimeRouter base id 0x4D00
+
 }
 
 

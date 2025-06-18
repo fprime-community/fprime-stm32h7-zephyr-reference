@@ -234,6 +234,13 @@
 
 // Used for 1Hz synthetic cycling
 #include <Os/Mutex.hpp>
+#include <Fw/Logger/Logger.hpp>
+
+#include <zephyr/drivers/gpio.h>
+
+#define LED0_NODE DT_ALIAS(led0)
+
+static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED0_NODE, gpios);
 
 // Allows easy reference to objects in FPP/autocoder required namespaces
 using namespace ReferenceDeployment;
@@ -330,6 +337,13 @@ void configureTopology(const TopologyState& state) {
     // Allocation identifier is 0 as the MallocAllocator discards it
     comQueue.configure(configurationTable, 0, mallocator);
     clockSource.configure(10); // 100 Hz core clock
+
+    Os::File::Status status =
+        gpioDriver.open(::led, Zephyr::ZephyrGpioDriver::GpioConfiguration::OUT);
+    if (status != Os::File::Status::OP_OK) {
+        Fw::Logger::log("[ERROR] Failed to open GPIO pin\n");
+    }
+
 }
 
 // Public functions for use in main program are namespaced with deployment name ReferenceDeployment
