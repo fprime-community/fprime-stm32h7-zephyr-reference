@@ -1,5 +1,10 @@
 # fprime-nucleo_h723zg-zephyr-reference F' project
 
+## Prerequisites
+1. Follow the [Hello World Tutorial](https://fprime.jpl.nasa.gov/latest/tutorials-hello-world/docs/hello-world/)
+2. Follow the [zephyr Getting Started Guide](https://docs.zephyrproject.org/latest/develop/getting_started/index.html) 
+3. Install the stm32 board manager. [This](https://github.com/fprime-community/fprime-arduino/blob/main/docs/arduino-cli-install.md) guide can be used.
+
 ## Initial project setup
 The setup.sh script can be run to build and install all required dependencies for this project
 ```sh
