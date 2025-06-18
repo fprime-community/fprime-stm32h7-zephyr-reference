@@ -13,6 +13,8 @@
 // #include <Svc/FrameAccumulator/FrameDetector/FprimeFrameDetector.hpp>
 // #include <ReferenceDeployment/Top/Ports_ComPacketQueueEnumAc.hpp>
 
+// #include <Fw/Logger/Logger.hpp>
+
 // // Used for 1Hz synthetic cycling
 // #include <Os/Mutex.hpp>
 
@@ -89,6 +91,9 @@
 //     bufferMgrBins.bins[1].numBuffers = DEFRAMER_BUFFER_COUNT;
 //     bufferMgrBins.bins[2].bufferSize = COM_DRIVER_BUFFER_SIZE;
 //     bufferMgrBins.bins[2].numBuffers = COM_DRIVER_BUFFER_COUNT;
+
+//     bufferMgrBins.bins[3].bufferSize = 16;      // Add a bin for small (e.g. 16-byte) buffers
+//     bufferMgrBins.bins[3].numBuffers = 10;      // Adjust count as needed for your app
 //     bufferManager.setup(BUFFER_MANAGER_ID, 0, mallocator, bufferMgrBins);
 
 //     // Frame accumulator needs to be passed a frame detector (default F Prime frame detector)
@@ -110,8 +115,8 @@
 //                            FILE_DOWNLINK_FILE_QUEUE_DEPTH);
 
 //     // Parameter database is configured with a database file name, and that file must be initially read.
-//     prmDb.configure("PrmDb.dat");
-//     prmDb.readParamFile();
+//     // prmDb.configure("PrmDb.dat");
+//     // prmDb.readParamFile();
 
 //     // Health is supplied a set of ping entires.
 //     health.setPingEntries(pingEntries, FW_NUM_ARRAY_ELEMENTS(pingEntries), HEALTH_WATCHDOG_CODE);
@@ -129,6 +134,8 @@
 //     // File Downlink (first entry after the ComPacket queues = NUM_CONSTANTS)
 //     configurationTable.entries[Ports_ComPacketQueue::NUM_CONSTANTS].depth = 100;
 //     configurationTable.entries[Ports_ComPacketQueue::NUM_CONSTANTS].priority = 1;
+
+//     Fw::Logger::log("EVENTS Depth: %u\n", configurationTable.entries[Ports_ComPacketQueue::EVENTS].depth);
 //     // Allocation identifier is 0 as the MallocAllocator discards it
 //     comQueue.configure(configurationTable, 0, mallocator);
 //     // if (state.hostname != nullptr && state.port != 0) {
@@ -250,8 +257,13 @@ U32 rateGroup2Context[Svc::ActiveRateGroup::CONNECTION_COUNT_MAX] = {};
 
 // A number of constants are needed for construction of the topology. These are specified here.
 enum TopologyConstants {
-    HEALTH_WATCHDOG_CODE = 0x123,
-    COMM_PRIORITY = 100,
+    // CMD_SEQ_BUFFER_SIZE = 5 * 1024,
+    // HEALTH_WATCHDOG_CODE = 0x123,
+    // COMM_PRIORITY = 100,
+    //     FILE_DOWNLINK_TIMEOUT = 1000,
+    // FILE_DOWNLINK_COOLDOWN = 1000,
+    // FILE_DOWNLINK_CYCLE_TIME = 1000,
+    // FILE_DOWNLINK_FILE_QUEUE_DEPTH = 10,
     // bufferManager constants
     FRAMER_BUFFER_SIZE = FW_MAX(FW_COM_BUFFER_MAX_SIZE, FW_FILE_BUFFER_MAX_SIZE) + Svc::FprimeProtocol::FrameHeader::SERIALIZED_SIZE + Svc::FprimeProtocol::FrameTrailer::SERIALIZED_SIZE,
     FRAMER_BUFFER_COUNT = 1, // ComQ/Com protocol
@@ -284,6 +296,8 @@ void configureTopology(const TopologyState& state) {
     // Frame accumulator needs to be passed a frame detector (default F Prime frame detector)
     frameAccumulator.configure(frameDetector, 1, mallocator, 2048);
 
+    // Command sequencer needs to allocate memory to hold contents of command sequences
+    // cmdSeq.allocateBuffer(0, mallocator, CMD_SEQ_BUFFER_SIZE);
 
     // Rate group driver needs a divisor list
     rateGroupDriver.configure(rateGroupDivisorsSet);
@@ -291,6 +305,10 @@ void configureTopology(const TopologyState& state) {
     // Rate groups require context arrays.
     rateGroup1.configure(rateGroup1Context, FW_NUM_ARRAY_ELEMENTS(rateGroup1Context));
     rateGroup2.configure(rateGroup2Context, FW_NUM_ARRAY_ELEMENTS(rateGroup2Context));
+
+     // File downlink requires some project-derived properties.
+    // fileDownlink.configure(FILE_DOWNLINK_TIMEOUT, FILE_DOWNLINK_COOLDOWN, FILE_DOWNLINK_CYCLE_TIME,
+    //                        FILE_DOWNLINK_FILE_QUEUE_DEPTH);
 
     // Health is supplied a set of ping entires.
     // health.setPingEntries(ConfigObjects::ReferenceDeployment_health::pingEntries,
