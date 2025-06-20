@@ -2,6 +2,17 @@
 
 set -e  # Exit on any error
 
+# Detect OS
+OS="$(uname -s)"
+case "$OS" in
+    Linux*)     MACHINE=Linux;;
+    Darwin*)    MACHINE=Mac;;
+    CYGWIN*|MINGW*|MSYS*) MACHINE=Windows;;
+    *)          MACHINE="UNKNOWN"
+esac
+
+echo "==> Detected OS: $MACHINE"
+
 echo "==> Checking prerequisites..."
 command -v python3 >/dev/null 2>&1 || { echo >&2 "python3 not found. Aborting."; exit 1; }
 command -v git >/dev/null 2>&1 || { echo >&2 "git not found. Aborting."; exit 1; }
@@ -14,13 +25,20 @@ else
   python3 -m venv fprime-venv
 fi
 
-if [ ! -f "fprime-venv/bin/activate" ]; then
-  echo "❌ Virtual environment activation script missing!"
+# Activate virtual environment
+if [ "$MACHINE" == "Windows" ]; then
+  ACTIVATE_PATH="fprime-venv/Scripts/activate"
+else
+  ACTIVATE_PATH="fprime-venv/bin/activate"
+fi
+
+if [ ! -f "$ACTIVATE_PATH" ]; then
+  echo "❌ Virtual environment activation script missing at $ACTIVATE_PATH!"
   exit 1
 fi
 
 echo "==> Activating virtual environment..."
-source fprime-venv/bin/activate
+source "$ACTIVATE_PATH"
 
 echo "==> Installing west version 1.4.0..."
 pip install west==1.4.0
@@ -31,7 +49,7 @@ pwd
 echo "==> Fetching git submodules..."
 git submodule update --recursive --init
 
-# Verify directory before changing into it
+# Check subdirectory
 if [ ! -d "lib/zephyr-workspace" ]; then
   echo "❌ Directory lib/zephyr-workspace does not exist!"
   exit 1
