@@ -12,8 +12,11 @@
       },
       "cacheVariables": {
           "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
-          "CMAKE_BUILD_TYPE": "Release"
-      }
+          "CMAKE_BUILD_TYPE": "Release",
+          "BOARD": "nucleo_h723zg"
+      },
+      "toolchainFile": "${fileDir}/lib/fprime-zephyr/cmake/toolchain/zephyr.cmake",
+      "generator": "Ninja"
     },
     {
       "name": "fprime-debug",
