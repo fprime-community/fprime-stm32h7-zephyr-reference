@@ -15,48 +15,95 @@
 
 ---
 
+## System Requirements
+1. F Prime System Requirements listed [here](https://github.com/nasa/fprime/tree/14bac5f350fef9add6c58592c690ebdabfbc83c7?tab=readme-ov-file#system-requirements)
+2. Zephyr dependencies listed [here](https://docs.zephyrproject.org/latest/develop/getting_started/index.html#install-dependencies)
+
 ## Prerequisites
 1. Follow the [Hello World Tutorial](https://fprime.jpl.nasa.gov/latest/tutorials-hello-world/docs/hello-world/)
-2. Follow the [zephyr Getting Started Guide](https://docs.zephyrproject.org/latest/develop/getting_started/index.html) 
-3. Install the stm32 board manager. [This](https://github.com/fprime-community/fprime-arduino/blob/main/docs/arduino-cli-install.md) guide can be used.
+2. Follow the [Zephyr Getting Started Guide](https://docs.zephyrproject.org/latest/develop/getting_started/index.html). Ensure that the Zephyr SDK is installed.
+3. Install the stm32 board manager. You can reference the guide [here](https://github.com/fprime-community/fprime-arduino/blob/main/docs/arduino-cli-install.md).
 
----
+## Initial Project Setup
 
-## Initial project setup
-The setup.sh script can be run to build and install all required dependencies for this project and assumes the prerequisites steps have been completed.
+> [!NOTE]
+> The `setup.sh` script can be used to build and install all required dependencies for this project and assumes the prerequesite steps have been completed. This script has only been tested on MacOS. Bash is required to run this script. To run the script, run `bash setup.sh`. Be sure to activate the fprime-venv created by this script. If this script is run successfully, the `Initial Project Setup` and `Building and Running the ReferenceDeployment Application` steps can be skipped.
+
+1. Clone the GitHub repository.
 ```sh
-bash setup.sh
+git clone https://github.com/CubeSTEP/fprime-nucleo_h723zg-zephyr-reference.git
 ```
 
-Activate the created virtual environment
+2. Fetch git submodules
 ```sh
-# In top level project directory
+# In fprime-nucleo_h723zg-zephyr-reference
+git submodule update --recursive init
+```
+
+3. In the project directory, create a virtual environment
+```sh
+# In fprime-nucleo_h723zg-zephyr-reference
+python3 -m venv fprime-venv
+```
+
+4. Activate the virtual environment
+```sh
+# In fprime-nucleo_h723zg-zephyr-reference
+# Linux & MacOS
 source fprime-venv/bin/activate
+
+# Windows
+source fprime-venv/Scripts/activate
 ```
+
+5. With the virtual environment activated, install the requirements
+```sh
+pip install -r requirements.txt
+```
+
+6. Navigate to the `zephyr-workspace` directory to set up zephyr
+```sh
+# In fprime-nucleo_h723zg-zephyr-reference
+cd lib/zephyr-workspace
+
+# Run the following commands
+west update
+west zephyr-export
+```
+
 ## Building and Running the ReferenceDeployment Application
 > [!Note]
 > This step can be skipped if the setup.sh script is run. However, any changes made will require you to run `fprime-util build` and may require `fprime-util generate`
 
-In order to build the ReferenceDeployment application, or any other F´ application, we first need to generate a build directory. This can be done with the following commands:
+1. In order to build the ReferenceDeployment application, or any other F´ application, we first need to generate a build directory. This can be done with the following commands:
 
-```
-cd ReferenceDeployment
+```sh
+# In fprime-nucleo_h723zg-zephyr-reference
 fprime-util generate
 ```
 
-The next step is to build the ReferenceDeployment application's code.
-```
+2. The next step is to build the ReferenceDeployment application's code.
+```sh
+# In fprime-nucleo_h723zg-zephyr-reference
 fprime-util build
 ```
 
 ## Flashing the NUCLEO H723ZG development board
 ```sh
-# In top level project directory
+# In fprime-nucleo_h723zg-zephyr-reference
+
+# Linux
+sh ~/.arduino15/packages/STMicroelectronics/tools/STM32Tools/2.3.0/stm32CubeProg.sh -i swd -f build-fprime-automatic-zephyr/zephyr/zephyr.hex -c /dev/ttyACM0
+
+# MacOS
 sh ~/Library/Arduino15/packages/STMicroelectronics/tools/STM32Tools/2.3.0/stm32CubeProg.sh -i swd -f build-fprime-automatic-zephyr/zephyr/zephyr.hex -c /dev/cu.usbmodem142203 
+
+# Windows
+# TODO
 ```
 
 > [!Note]
-> `/dev/cu.usbmodem142203` will likely need to be replaced with the correct port. This can be found by running the following command: `ls -l /dev/cu.usb*`
+> Change `/dev/ttyACM0` (`/dev/cu.usbmodem141203` for MacOS) to the correct serial device connected to the device. To find the correct serial port, refer to thie documentation [here](https://github.com/ngcp-project/gcs-infrastructure/blob/d34eeba4eb547a5174d291a64b36eaa8c11369c8/Communication/XBee/docs/serial_port.md)
 
 > [!Note]
 > Two USB connections are required. USB PWR is used to power and flash the development board and access the debug terminal, USER USB is used to connect to the F Prime GDS
@@ -105,3 +152,4 @@ ls /dev/ttyACM*
 > [!Note]
 > On WSL, the device will usually appear as /dev/ttyACM0. You can check using ls /dev/ttyACM*
 
+> `/dev/cu.usbmodem142101` will likely need to be replaced with the correct port.
