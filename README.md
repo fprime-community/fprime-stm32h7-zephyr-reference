@@ -43,11 +43,8 @@ python3 -m venv fprime-venv
 4. Activate the virtual environment
 ```sh
 # In fprime-nucleo_h723zg-zephyr-reference
-# Linux & MacOS
+# Linux, MacOS, & Windows WSL
 source fprime-venv/bin/activate
-
-# Windows
-source fprime-venv/Scripts/activate
 ```
 
 5. With the virtual environment activated, install the requirements
