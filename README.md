@@ -151,5 +151,3 @@ ls /dev/ttyACM*
 ```
 > [!Note]
 > On WSL, the device will usually appear as /dev/ttyACM0. You can check using ls /dev/ttyACM*
-
-> `/dev/cu.usbmodem142101` will likely need to be replaced with the correct port.
