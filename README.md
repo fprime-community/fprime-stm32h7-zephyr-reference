@@ -86,15 +86,16 @@ winget install dorssel.usbipd-win
 ```
 usbipd list
 ```
+> [!Note]
+> You should see two STM32 devices listed with different BUSID's. One corresponds to the USB PWR and the other to USER USB.
 
-3. On Powershell bind the device to USBIPD (as administrator):
+3. On Powershell bind both devices to USBIPD in two seperate commands (as administrator):
 ```
-usbipd bind --busid <BUSID>
+usbipd bind --busid <BUSID_USB_PWR> --wsl
 ```
 
-4. On Powershell attach USB device to WSL:
 ```
-usbipd attach --busid <BUSID> --wsl
+usbipd bind --busid <BUSID_USER_USB> --wsl
 ```
 
 5. On WSL confirm visibility of USB device:
