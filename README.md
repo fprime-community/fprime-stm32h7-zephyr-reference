@@ -13,12 +13,6 @@
 >[!Note]
 > For users using WSL please see important instructions below under section **WSL (Windows 11) Notes**
 
----
-
-## System Requirements
-1. F Prime System Requirements listed [here](https://github.com/nasa/fprime/tree/14bac5f350fef9add6c58592c690ebdabfbc83c7?tab=readme-ov-file#system-requirements)
-2. Zephyr dependencies listed [here](https://docs.zephyrproject.org/latest/develop/getting_started/index.html#install-dependencies)
-
 ## Prerequisites
 1. Follow the [Hello World Tutorial](https://fprime.jpl.nasa.gov/latest/tutorials-hello-world/docs/hello-world/)
 2. Follow the [Zephyr Getting Started Guide](https://docs.zephyrproject.org/latest/develop/getting_started/index.html). Ensure that the Zephyr SDK is installed.
@@ -92,14 +86,11 @@ fprime-util build
 ```sh
 # In fprime-nucleo_h723zg-zephyr-reference
 
-# Linux
+# Linux/Windows WSL
 sh ~/.arduino15/packages/STMicroelectronics/tools/STM32Tools/2.3.0/stm32CubeProg.sh -i swd -f build-fprime-automatic-zephyr/zephyr/zephyr.hex -c /dev/ttyACM0
 
 # MacOS
 sh ~/Library/Arduino15/packages/STMicroelectronics/tools/STM32Tools/2.3.0/stm32CubeProg.sh -i swd -f build-fprime-automatic-zephyr/zephyr/zephyr.hex -c /dev/cu.usbmodem142203 
-
-# Windows
-# TODO
 ```
 
 > [!Note]
