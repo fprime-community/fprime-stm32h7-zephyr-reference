@@ -106,7 +106,7 @@
 #include <Fw/Logger/Logger.hpp>
 #include <Fw/Types/Assert.hpp>
 
-const struct device *serial = DEVICE_DT_GET(DT_NODELABEL(cdc_acm_uart0));
+const struct device *serial = DEVICE_DT_GET(DT_NODELABEL(usart1));
 /**
  * \brief execute the program
  *
