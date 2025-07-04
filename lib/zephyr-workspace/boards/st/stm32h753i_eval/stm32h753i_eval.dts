@@ -8,7 +8,7 @@
     compatible = "st,stm32h753i-eval";
 
    aliases {
-        led-0 = &green_led;
+        led0 = &green_led;
    };
 
    chosen {
@@ -64,6 +64,26 @@
 			reg = <0x001e0000 DT_SIZE_K(128)>;
 		};
 	};
+};
+
+&pll {
+	div-m = <5>;
+	mul-n = <160>;
+	div-p = <2>;
+	div-q = <4>;
+	div-r = <2>;
+	clocks = <&clk_hse>;
+	status = "okay";
+};
+
+&pll2 {
+	div-m = <5>;
+	mul-n = <96>;
+	div-p = <2>;
+	div-q = <4>;
+	div-r = <10>;
+	clocks = <&clk_hse>;  /* Assuming 25MHz HSE */
+	status = "okay";
 };
 
 &rcc {
