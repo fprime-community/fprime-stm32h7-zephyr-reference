@@ -5,7 +5,7 @@
       "name": "fprime",
       "displayName": "F´ Release Preset",
       "description": "F´ release build using local fprime-venv",
-      "binaryDir": "${sourceDir}/build-fprime-automatic-native",
+      "binaryDir": "${sourceDir}/build-fprime-automatic-zephyr",
       "environment": {
         "VIRTUAL_ENV": "${fileDir}/fprime-venv",
         "PATH": "$env{VIRTUAL_ENV}/bin:$penv{PATH}"

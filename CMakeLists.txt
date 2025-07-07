@@ -5,6 +5,7 @@
 
 cmake_minimum_required(VERSION 3.24.2)
 
+list(APPEND BOARD_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/lib/fprime-stm32h7-zephyr")
 find_package(Zephyr HINTS "${CMAKE_CURRENT_LIST_DIR}/lib/zephyr-workspace")
 project(fprime-nucleo_h723zg-zephyr-reference C CXX)
 
