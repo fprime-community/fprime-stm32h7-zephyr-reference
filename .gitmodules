@@ -7,3 +7,6 @@
 [submodule "lib/zephyr-workspace/zephyr"]
 	path = lib/zephyr-workspace/zephyr
 	url = https://github.com/zephyrproject-rtos/zephyr.git
+[submodule "lib/fprime-stm32h7-zephyr"]
+	path = lib/fprime-stm32h7-zephyr
+	url = https://github.com/CubeSTEP/fprime-stm32h7-zephyr.git
