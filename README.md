@@ -31,7 +31,7 @@ git clone https://github.com/CubeSTEP/fprime-nucleo_h723zg-zephyr-reference.git
 2. Fetch git submodules
 ```sh
 # In fprime-nucleo_h723zg-zephyr-reference
-git submodule update --recursive init
+git submodule update --recursive --init
 ```
 
 3. In the project directory, create a virtual environment
