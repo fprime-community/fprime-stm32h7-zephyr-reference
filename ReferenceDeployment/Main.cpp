@@ -106,7 +106,8 @@
 #include <Fw/Logger/Logger.hpp>
 #include <Fw/Types/Assert.hpp>
 
-const struct device *serial = DEVICE_DT_GET(DT_NODELABEL(usart1));
+// const struct device *serial = DEVICE_DT_GET(DT_NODELABEL(usart1)); // For STM32H753I-EVAL
+const struct device *serial = DEVICE_DT_GET(DT_NODELABEL(usart3)); // For NUCLEO-STM32H723ZG
 /**
  * \brief execute the program
  *
