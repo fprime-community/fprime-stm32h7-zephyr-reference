@@ -1,6 +1,8 @@
-# fprime-nucleo_h723zg-zephyr-reference F' project
+# fprime-stm32h7-zephyr-reference F' project
 > [!Note]
-> This deployment targets the NUCLEO-H723ZG development board and has been verified on macOS and on Windows 11 using WSL (Ubuntu 22.04 LTS)
+> This deployment by default builds for the NUCLEO-H723ZG development board and has been verified on macOS and on Windows 11 using WSL (Ubuntu 22.04 LTS). 
+> 
+> If you are using another board, please follow the steps found [here](#specifying-zephyr-board-configuration). Also, the device tree nodes in `Main.cpp` and `ReferenceDeploymentTopology.cpp` for the serial port and LEDs may need to be updated depending on your zephyr board configuration. For example, the `usart3` node is set `Main.cpp` for the `NUCLEO-H723ZG` board.
 
 ## System Requirements
 
@@ -107,6 +109,28 @@ fprime-gds -n --dictionary ./build-artifacts/zephyr/fprime-zephyr-deployment/dic
 
 > [!Note]
 > `/dev/cu.usbmodem142101` will likely need to be replaced with the correct port. This can be found by running the following command: `ls -l /dev/cu.usb*`
+
+## Specifying Zephyr Board Configuration
+This reference deployent can be used for any board running zephyr so long as the correct zephyr board configuration is provided. In order to specify the board to build for, update the `BOARD` option in the `settings.ini` file to the correct board name.
+
+
+```ini
+BOARD=nucleo_h723zg # Example for the NUCLEO-H723ZG, which is supported by zephyr
+```
+
+A list of supported boards can be found [here](https://docs.zephyrproject.org/latest/boards/index.html#).
+
+> [!NOTE]
+> The config file in `./lib/zephyr-workspace/.west/` may need to be updated in order to install the correct board configurations. This deployment by default only installs the board configurations for hal_stm32 boards.
+
+### Using Custom Board Configurations
+Using a custom board configuration may require updating the CMakeLists.txt file. This repository appends the following board root which contains a board configuration for the STM32H753I-EVAL board.
+
+```cmake
+list(APPEND BOARD_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/lib/fprime-stm32h7-zephyr")
+```
+
+Make sure to update the path to match the location of your custom board configuration if needed. More information on creating custom board configurations can be found on zephyr's official documentation [here](https://docs.zephyrproject.org/latest/hardware/porting/board_porting.html).
 
 ## WSL (Windows 11) Notes
 WSL doesn't natively have access to USB devices. To flash the board properly and allow the GDS to communicate with the deployment board via UART over USB, follow these one-time steps
