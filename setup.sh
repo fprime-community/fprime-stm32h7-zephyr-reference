@@ -62,6 +62,7 @@ pwd
 echo "==> Updating Zephyr workspace..."
 west update
 west zephyr-export
+west sdk install
 
 cd ../../
 echo "==> Returned to Directory:"
