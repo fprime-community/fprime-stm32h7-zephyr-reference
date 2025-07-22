@@ -13,6 +13,16 @@ Activate the created virtual environment
 # In top level project directory
 source fprime-venv/bin/activate
 ```
+
+### Install the arduino_cli and tools for stm32
+
+```
+curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | BINDIR=$VIRTUAL_ENV/bin sh
+arduino-cli config init
+arduino-cli config add board_manager.additional_urls https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json
+arduino-cli core install STMicroelectronics:stm32
+```
+
 ## Building and Running the ReferenceDeployment Application
 > [!Note]
 > This step can be skipped if the setup.sh script is run. However, any changes made will require you to run `fprime-util build` and may require `fprime-util generate`
@@ -33,6 +43,9 @@ fprime-util build
 ```sh
 sh ~/Library/Arduino15/packages/STMicroelectronics/tools/STM32Tools/2.3.0/stm32CubeProg.sh -i swd -f build-fprime-automatic-zephyr/zephyr/zephyr.hex -c /dev/cu.usbmodem142203 
 ```
+
+> [!Note]
+> `~/Library/Arduino15` may be different. It may be in `~/.arduino15`
 
 > [!Note]
 > `/dev/cu.usbmodem142203` will likely need to be replaced with the correct port. This can be found by running the following command: `ls -l /dev/cu.usb*`
