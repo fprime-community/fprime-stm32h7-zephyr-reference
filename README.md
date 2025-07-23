@@ -18,7 +18,13 @@
 ## Prerequisites
 1. Follow the [Hello World Tutorial](https://fprime.jpl.nasa.gov/latest/tutorials-hello-world/docs/hello-world/)
 2. Follow the [Zephyr Getting Started Guide](https://docs.zephyrproject.org/latest/develop/getting_started/index.html). Ensure that the Zephyr SDK is installed.
-3. Install the stm32 board manager. You can reference the guide [here](https://github.com/fprime-community/fprime-arduino/blob/main/docs/arduino-cli-install.md).
+3. Install the [STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html`). More information can be found [here](https://github.com/stm32duino/Arduino_Core_STM32/wiki/Upload-methods)
+
+> [!Warning]
+> If you installed the ARM version of the STM32CubeProgrammer, please follow the steps provided [here](./docs/Arduino-STM32CubeProgrammer-Arm-Issue.md)
+
+4. Install the stm32 board manager. You can reference the guide [here](https://github.com/fprime-community/fprime-arduino/blob/main/docs/arduino-cli-install.md).
+
 
 ## Initial Project Setup
 
