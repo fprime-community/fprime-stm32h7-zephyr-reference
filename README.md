@@ -28,7 +28,7 @@ This project is an implementation of F` on Zephyr RTOS.
 [initial-setup]: ./docs/main-content/initial-setup.md
 [board-dependencies]: ./docs/main-content/board-dependencies.md
 [build-flash-run]: ./docs/main-content/build-flash-run.md
-[custom-board]: ./docs/additional-resources/custom-board.md
+[custom-board]: ./docs/additional-resources/specifying-board-configuration.md
 [board-list]: ./docs/additional-resources/board-list.md
 [common-issues]: ./docs/additional-resources/common-issues.md
 [wsl-notes]: ./docs/additional-resources/wsl-notes.md

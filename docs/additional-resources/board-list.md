@@ -14,4 +14,4 @@ The following boards were able to successfully deploy this reference deployment.
 
 
 <!-- Links -->
-[stm32]: ./uploading/stm32.md
+[stm32]: ../uploading/stm32.md
