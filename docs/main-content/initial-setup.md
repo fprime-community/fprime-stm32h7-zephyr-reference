@@ -51,6 +51,10 @@ With the virtual environment activated, install the requirements
 pip install -r requirements.txt
 ```
 
+ > [!NOTE]
+ > If you are not using the NUCLEO-H723ZG board, additional steps need to be taken. Please refer to the [Specifying Board Configuration][specifying-board-configuration] documentation for more information before continuing.
+
+
 ## 6. Get Zephyr Source Code
 Navigate to the `zephyr-workspace` directory to set up zephyr. This deployment by default only installs zephyr source code for STM32 boards. If you are not using a stm32 board, the `config` file in `./lib/zephyr-workspace/.west/` will need to be updated. 
 ```sh
@@ -65,4 +69,5 @@ west zephyr-export
 # Next Steps: [Building, Flashing, and Running the Deployment][build-flash-run]
 
 <!-- Links -->
-[build-flash-run]: ./docs/main-content/build-flash-run.md
+[build-flash-run]: ./build-flash-run.md
+[specifying-board-configuration]: ../additional-resources/specifying-board-configuration.md
