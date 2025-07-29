@@ -13,6 +13,7 @@ This project is an implementation of F` on Zephyr RTOS.
 ## Prerequisites
 1. Follow the [Hello World Tutorial](https://fprime.jpl.nasa.gov/latest/tutorials-hello-world/docs/hello-world/)
 2. Follow the [Zephyr Getting Started Guide](https://docs.zephyrproject.org/latest/develop/getting_started/index.html). Ensure that the Zephyr's dependencies and SDK have been installed
+3. If you are using WSL, make sure to refer to the [WSL Notes][wsl-notes] docs
 
 ## Table of Contents
 1. [Initial Project Setup][initial-setup]
@@ -21,7 +22,7 @@ This project is an implementation of F` on Zephyr RTOS.
 ## Additional Resources
 - [Using a Custom Board Configuration][custom-board]
 - [Tested Board List][board-list]
-- [Common Issues][common-issues]
+- [Troubleshooting][troubleshooting]
 - [WSL Notes][wsl-notes]
 
 <!-- Links -->
@@ -30,5 +31,5 @@ This project is an implementation of F` on Zephyr RTOS.
 [build-flash-run]: ./docs/main-content/build-flash-run.md
 [custom-board]: ./docs/additional-resources/specifying-board-configuration.md
 [board-list]: ./docs/additional-resources/board-list.md
-[common-issues]: ./docs/additional-resources/common-issues.md
+[troubleshooting]: ./docs/additional-resources/troubleshooting.md
 [wsl-notes]: ./docs/additional-resources/wsl-notes.md

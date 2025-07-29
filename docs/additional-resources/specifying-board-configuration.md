@@ -40,7 +40,7 @@ BOARD=nucleo_h723zg # Example for the NUCLEO-H723ZG, which is supported by zephy
 
 A list of supported boards can be found [here](https://docs.zephyrproject.org/latest/boards/index.html#).
 
-Return to the [Initial Setup Documentation][initial-setup]
+# Return to the [Initial Setup Documentation][initial-setup]
 
 <!-- Links -->
 [initial-setup]: ../main-content/initial-setup.md
