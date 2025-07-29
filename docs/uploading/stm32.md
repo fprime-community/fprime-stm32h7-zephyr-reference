@@ -12,7 +12,7 @@ These steps were tested for the following boards:
 2. Install the [STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html`). More information can be found [here](https://github.com/stm32duino/Arduino_Core_STM32/wiki/Upload-methods)
 
 > [!Warning]
-> If you installed the ARM version of the STM32CubeProgrammer, please follow the steps provided [here](./docs/Arduino-STM32CubeProgrammer-Arm-Issue.md)
+> If you installed the ARM version of the STM32CubeProgrammer, please follow the steps provided [here](../additional-resources/Arduino-STM32CubeProgrammer-Arm-Issue.md)
 
 ## Flashing the Board
 ```sh
