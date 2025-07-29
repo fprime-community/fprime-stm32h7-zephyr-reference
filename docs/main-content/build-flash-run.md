@@ -9,13 +9,13 @@ This guide assumes that the initial setup steps have been completed, and will wa
 1. In order to build the ReferenceDeployment application, or any other F´ application, we first need to generate a build directory. This can be done with the following commands:
 
 ```sh
-# In fprime-stm32h7-zephyr-reference
+# In fprime-stm32h7-zephyr-reference (fprime-venv)
 fprime-util generate
 ```
 
 2. The next step is to build the ReferenceDeployment application's code.
 ```sh
-# In fprime-stm32h7-zephyr-reference
+# In fprime-stm32h7-zephyr-reference (fprime-venv)
 fprime-util build
 ```
 
@@ -44,7 +44,7 @@ sh ~/Library/Arduino15/packages/STMicroelectronics/tools/STM32Tools/2.3.0/stm32C
 The following command will spin up the F' GDS as well as run the application binary and the components necessary for the GDS and application to communicate.
 
 ```sh
-# In top level project directory
+# In fprime-stm32h7-zephyr-reference (fprime-venv)
 fprime-gds -n --dictionary ./build-artifacts/zephyr/fprime-zephyr-deployment/dict/ReferenceDeploymentTopologyDictionary.json --communication-selection uart --uart-device /dev/cu.usbmodem142101 --uart-baud 115200 
 ```
 
