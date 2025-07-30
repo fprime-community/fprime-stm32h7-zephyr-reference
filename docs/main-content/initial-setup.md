@@ -16,7 +16,7 @@ git clone https://github.com/CubeSTEP/fprime-nucleo_h723zg-zephyr-reference.git
 > ```
 
 > [!NOTE]
-> The `setup.sh` script can be used to build and install all required dependencies for this project and assumes the prerequesite steps have been completed. This script has only been tested on MacOS. Bash is required to run this script. To run the script, run `bash setup.sh`. Be sure to activate the fprime-venv created by this script. If this script is run successfully, the `Initial Project Setup` and `Building and Running the ReferenceDeployment Application` steps can be skipped.
+> The `setup.sh` script can be used to build and install all required dependencies for this project and assumes the prerequesite steps have been completed. This script has only been tested on MacOS. Bash is required to run this script. To run the script, run `bash setup.sh`. Be sure to activate the fprime-venv created by this script. If this script is run successfully, the `Initial Project Setup` and `Building the Deployment` steps can be skipped.
 
 ## 2. Fetch git submodules
 Install the required libraries for this deployment
