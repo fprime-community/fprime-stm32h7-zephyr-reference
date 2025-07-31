@@ -55,6 +55,9 @@ if [ ! -d "lib/zephyr-workspace" ]; then
   exit 1
 fi
 
+echo "==> Installing Python requirements (this includes fprime-util)..."
+pip install -r requirements.txt
+
 cd lib/zephyr-workspace
 echo "==> Entered Directory:"
 pwd
@@ -67,9 +70,6 @@ west sdk install
 cd ../../
 echo "==> Returned to Directory:"
 pwd
-
-echo "==> Installing Python requirements (this includes fprime-util)..."
-pip install -r requirements.txt
 
 echo "==> Generating F´ build system..."
 fprime-util generate
