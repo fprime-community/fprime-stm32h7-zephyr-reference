@@ -34,7 +34,7 @@
 <!-- TODO: UPDATE REPO NAME -->
 1. Clone the GitHub repository.
 ```sh
-git clone https://github.com/CubeSTEP/fprime-nucleo_h723zg-zephyr-reference.git
+git clone https://github.com/fprime-community/fprime-stm32h7-zephyr-reference.git
 ```
 
 2. Fetch git submodules
