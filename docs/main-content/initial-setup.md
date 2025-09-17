@@ -6,13 +6,13 @@ This guide will walk through the steps of setting up the reference deployment.
 ## 1. Clone the GitHub repository
 Clone the GitHub repository onto your local machine.
 ```sh
-git clone https://github.com/CubeSTEP/fprime-nucleo_h723zg-zephyr-reference.git
+git clone https://github.com/fprime-community/fprime-stm32h7-zephyr-reference.git
 ```
 
 > [!NOTE]
 > If you would like to use fprime-bootstrap instead of git to clone this project, run this command and skip to step 5.
 > ```sh
-> fprime-bootstrap clone https://github.com/CubeSTEP/fprime-nucleo_h723zg-zephyr-reference.git
+> fprime-bootstrap clone https://github.com/fprime-community/fprime-stm32h7-zephyr-reference.git
 > ```
 
 > [!NOTE]
